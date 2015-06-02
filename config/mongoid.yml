@@ -1,0 +1,26 @@
+common: &common
+  sessions: &sessions
+    default: &default_session
+      database: <%= "#{ENV['MONGODB_DATABASE']}_#{Rails.env}" %>
+      hosts:
+        <% 3.times do |i| %>
+            <% if ENV["MONGODB_URL_#{i}"] %>
+              - <%= ENV["MONGODB_URL_#{i}"] %>
+            <% end %>
+        <% end %>
+  options:
+    use_activesupport_time_zone: false
+
+test:
+  <<: *common
+development:
+  <<: *common
+staging:
+  <<: *common
+production:
+  <<: *common
+  sessions:
+    <<: *sessions
+    default:
+      <<: *default_session
+      database: <%= ENV['MONGODB_DATABASE'] %>
