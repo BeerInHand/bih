@@ -7,13 +7,6 @@ module Brewing
         attr_accessor :value, :units
       end
 
-      def method_missing(method_name, *args, &block)
-        unit = self.class.unit_from_method(method_name)
-        raise NoMethodError unless self.class.is_valid_unit?(unit)
-        return set(unit, args[0]) if self.class.is_setter?(method_name)
-        convert(unit)
-      end
-
       module ClassMethods
         def is_valid_unit?(unit)
           valid_units.include? unit
@@ -43,6 +36,13 @@ module Brewing
       def initialize(value, units)
         @value = value.to_f
         @units = self.class.scrub_unit(units)
+      end
+
+      def method_missing(method_name, *args, &block)
+        unit = self.class.unit_from_method(method_name)
+        raise NoMethodError unless self.class.is_valid_unit?(unit)
+        return set(unit, args[0]) if self.class.is_setter?(method_name)
+        convert(unit)
       end
 
       private

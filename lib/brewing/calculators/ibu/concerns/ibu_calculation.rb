@@ -8,7 +8,7 @@ module Brewing
           attr_accessor :volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume
         end
 
-        def initialize(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume)
+        def initialize(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume = nil)
           @volume = volume
           @gravity = gravity
           @weight = weight
@@ -16,7 +16,7 @@ module Brewing
           @aau = aau
           @added_during = added_during
           @boil_length = boil_length
-          @boil_volume = boil_volume
+          @boil_volume = boil_volume || volume
         end
 
         def ibus=(ibus)

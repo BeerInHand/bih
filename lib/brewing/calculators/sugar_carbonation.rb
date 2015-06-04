@@ -1,6 +1,6 @@
 module Brewing
   module Calculators
-    class PrimingSugar
+    class SugarCarbonation
 
       PRIMER = {
         black_treacle:          0.330005,

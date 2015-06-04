@@ -13,7 +13,7 @@ module Brewing
       def correct_gravity
         at_59 = 1.313454 + -0.132674 * calibration_temperature.f + 0.002057793 * squared(calibration_temperature.f) + -0.000002627634 * cubed(calibration_temperature.f)
         sg = gravity.sg + ((1.313454 - (0.132674 * temperature.f) + 0.002067793 * squared(temperature.f) - 0.000002627634 * cubed(temperature.f)) - at_59) / 1000
-        Brewing::Units::Gravity.new(sg, :sg)
+        Brewing::Units::Gravity.new(sg.round(3), :sg)
       end
 
       private

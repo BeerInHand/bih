@@ -6,6 +6,7 @@ module Brewing
       ByFormula = Struct.new(:rager, :tinseth)
 
       attr_accessor :rager, :tinseth
+      attr_reader :volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume
 
       def initialize(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume)
         @rager = Rager.new(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume)
@@ -24,6 +25,29 @@ module Brewing
         rager.ibus = ibu
         tinseth.ibus = ibu
       end
+
+
+      def method_missing(method_name, *args, &block)
+        field = self.class.field_from_method(method_name)
+        raise NoMethodError unless set_list.include?(field)
+        set(method_name, args[0])
+      end
+
+      private
+
+      def set_list
+        [:volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume]
+      end
+
+      def self.field_from_method(method_name)
+        method_name.to_s.gsub(/=$/,'').to_sym
+      end
+
+      def set(field, value)
+        rager.send(field, value)
+        tinseth.send(field, value)
+      end
+
     end
   end
 end
