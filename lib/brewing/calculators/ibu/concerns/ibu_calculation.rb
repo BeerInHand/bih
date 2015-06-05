@@ -3,20 +3,21 @@ module Brewing
     class Ibu
       module Concerns::IbuCalculation
         extend ActiveSupport::Concern
+        include Brewing::Constants
 
         included do
           attr_accessor :volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume
         end
 
-        def initialize(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume = nil)
-          @volume = volume
-          @gravity = gravity
-          @weight = weight
-          @hop_form = hop_form
-          @aau = aau
-          @added_during = added_during
-          @boil_length = boil_length
-          @boil_volume = boil_volume || volume
+        def initialize(params = {})
+          @volume = params[:volume] || Units::Volume.new(5, :gallons)
+          @gravity = params[:gravity] || Units::Gravity.new(1.048, :sg)
+          @weight = params[:weight] || Units::Weight.new(1, :ounces)
+          @hop_form = params[:hop_form] || :pellet
+          @aau = params[:aau] || 10.0
+          @added_during = params[:added_during] || :boil
+          @boil_length = params[:boil_length] || 90
+          @boil_volume = params[:boil_volume] || Units::Volume.new(5, :gallons)
         end
 
         def ibus=(ibus)

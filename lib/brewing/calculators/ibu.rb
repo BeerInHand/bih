@@ -6,11 +6,10 @@ module Brewing
       ByFormula = Struct.new(:rager, :tinseth)
 
       attr_accessor :rager, :tinseth
-      attr_reader :volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume
 
-      def initialize(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume)
-        @rager = Rager.new(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume)
-        @tinseth = Tinseth.new(volume, gravity, weight, hop_form, aau, added_during, boil_length, boil_volume)
+      def initialize(params = {})
+        @rager = Rager.new(params)
+        @tinseth = Tinseth.new(params)
       end
 
       def ibus
