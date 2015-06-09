@@ -1,6 +1,6 @@
 module Brewing
   module Calculators
-    class SugarCarbonation
+    class NaturalCarbonation
 
       PRIMER = {
         black_treacle:          0.330005,
@@ -47,7 +47,7 @@ module Brewing
         @co2 = co2
       end
 
-      def co2_generated_by_amount(weight, primer)
+      def co2_generated_by_primer(primer, weight)
         weight.grams * primer.factor / volume.liters
       end
 

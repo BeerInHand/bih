@@ -8,7 +8,6 @@ describe Brewing::Calculators::Ibu::Rager, calculators: true, ibu: true do
 
   it 'verifies the rager utilization modifiers for pellets equal 0' do
     @calc.hop_form = :pellets 
-
     expect(@calc.rager.utilization).to eq(@calc.rager.utilization_with_modifiers)
   end
 

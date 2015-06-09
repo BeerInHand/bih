@@ -37,7 +37,7 @@ describe Brewing::Calculators::Ibu::Tinseth, calculators: true, ibu: true do
 
   it 'verifies the tinseth ibus and utilization - 15 mins' do
     @calc.boil_length = 15
-    expect(@calc.tinseth.ibus.round(1)).to eq(18.8)
+    expect(@calc.tinseth.ibus.round(1)).to eq(18.9)
     expect(@calc.tinseth.utilization.round(2)).to eq(0.12)
   end
 

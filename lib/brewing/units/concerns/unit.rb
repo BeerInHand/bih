@@ -53,7 +53,7 @@ module Brewing
 
       def convert(units_out)
         return value if units == units_out || value == 0
-        (value * fetch(units) / fetch(units_out)).round(2)
+        (value * fetch(units) / fetch(units_out))
       end
 
       def set(units, value)
