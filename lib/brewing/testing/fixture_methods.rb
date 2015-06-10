@@ -1,49 +1,27 @@
 module Brewing::FixtureMethods
 
-  def create_volume(overrides = {})
-    params = {
-      volume: 5,
-      units: :gallons
-    }.merge(overrides)
-    Brewing::Units::Volume.new(params[:volume], params[:units])
+  def create_volume(volume = 5, units = :gallons)
+    Brewing::Units::Volume.new(volume, units)
   end
 
-  def create_weight(overrides = {})
-    params = {
-      weight: 1,
-      units: :ounces
-    }.merge(overrides)
-    Brewing::Units::Weight.new(params[:weight], params[:units])
+  def create_weight(weight = 1, units = :ounces)
+    Brewing::Units::Weight.new(weight, units)
   end
 
-  def create_temperature(overrides = {})
-    params = {
-      temp: 60,
-      units: :f
-    }.merge(overrides)
-    Brewing::Units::Temperature.new(params[:temp], params[:units])
+  def create_temperature(temp = 60, units = :f)
+    Brewing::Units::Temperature.new(temp, units)
   end
 
-  def create_gravity(overrides = {})
-    params = {
-      gravity: 1.048,
-      units: :sg
-    }.merge(overrides)
-    Brewing::Units::Gravity.new(params[:gravity], params[:units])
+  def create_gravity(gravity = 1.048, units = :sg)
+    Brewing::Units::Gravity.new(gravity, units)
   end
 
-  def create_wort(overrides = {})
-    params = {
-      volume: 5,
-      units: :gallons,
-      gravity: 1.048,
-      units: :sg
-    }.merge(overrides)
+  def create_mash
+    Brewing::Mash.new(create_volume, create_weight, create_temperature)
+  end  
 
-    Brewing::Wort.new(
-      create_volume(params),
-      create_gravity(params)
-    )
+  def create_wort
+    Brewing::Wort.new(create_volume, create_gravity)
   end
 
   def create_ibu_calc(overrides = {})
@@ -66,15 +44,20 @@ module Brewing::FixtureMethods
   end
 
   def create_alcohol_calculator
-    og = create_gravity(gravity: 1.048)
-    fg = create_gravity(gravity: 1.012)
+    og = create_gravity(1.048)
+    fg = create_gravity(1.012)
     alcohol = Brewing::Calculators::Alcohol.new(og, fg)
   end
 
-  def create_dilution_calculator(overrides = {})
-    params = {
-      wort: create_wort
-    }.merge(overrides)
-    Brewing::Calculators::Dilution.new(params[:wort])
+  def create_dilution_calculator
+    Brewing::Calculators::Dilution.new(create_wort)
+  end
+
+  def create_decoction_calculator
+    Brewing::Calculators::Decoction.new(create_mash)
+  end
+
+  def create_infusion_calculator
+    Brewing::Calculators::Infusion.new(create_mash)
   end
 end

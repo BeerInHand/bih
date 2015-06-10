@@ -1,6 +1,6 @@
 module Brewing
   module Calculators
-    class Mash
+    module Mash
       module Concerns::MashCalculation
         extend ActiveSupport::Concern
 
