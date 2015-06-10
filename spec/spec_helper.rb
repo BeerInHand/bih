@@ -7,7 +7,7 @@ require 'rspec/rails'
 #require 'fixtures/fixture_methods'
 #Dir["#{File.dirname(__FILE__)}/fixtures/fixture_methods/*.rb"].each { |f| require f }
 
-require 'brewing/testing/spec_helper'
+require 'beerinhand/testing/spec_helper'
 
 # Support
 Dir["#{File.dirname(__FILE__)}/shared_examples/**/*.rb"].each { |f| require f }
