@@ -3,7 +3,7 @@ module Beerinhand
     extend ActiveSupport::Concern
 
     included do
-      embeds_one :units, class_name: 'Unit', as: :unitable, cascade_callbacks: true
+      embeds_one :units, class_name: 'Beerinhand::Unit', as: :unitable, cascade_callbacks: true
 
       after_initialize :build_units_if_nil
 

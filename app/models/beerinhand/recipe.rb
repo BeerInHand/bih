@@ -28,11 +28,11 @@ module Beerinhand
 
     index({ user_id: 1 })
 
-    embeds_many :fermentables, class_name: 'Recipe::Fermentable'
-    embeds_many :hops, class_name: 'Recipe::Hop'
-    embeds_many :yeasts, class_name: 'Recipe::Yeast'
-    embeds_many :miscs, class_name: 'Recipe::Miscellaneous'
-    embeds_many :events, class_name: 'Recipe::Event'
+    embeds_many :fermentables, class_name: 'Beerinhand::Recipe::Fermentable'
+    embeds_many :hops, class_name: 'Beerinhand::Recipe::Hop'
+    embeds_many :yeasts, class_name: 'Beerinhand::Recipe::Yeast'
+    embeds_many :miscs, class_name: 'Beerinhand::Recipe::Miscellaneous'
+    embeds_many :events, class_name: 'Beerinhand::Recipe::Event'
 
     validates :name, presence: true
     validates :volume, numericality: true

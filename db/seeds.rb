@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 def add(data)
-  recipe = Recipe.new(data)
+  recipe = Beerinhand::Recipe.new(data)
   if recipe.valid?
     recipe.save!
     print "#{recipe.name} "
@@ -10,7 +10,7 @@ def add(data)
   end
 end
 
-Recipe.all.each(&:delete)
+Beerinhand::Recipe.all.each(&:delete)
 
 add({ boil_volume: "15.0", efficency: "75", gravity: "1.051", ibu: "24.7", name: "Unnamed", privacy: "0", recipe_type: "All Grain", srm: "7.7", style: "American Wheat", user_id: "2", volume: "15.0", units: { gravity_units: "SG", hop_units: "Grams", grain_units: "Lbs", temp_units: "F", volume_units: "Gallons" }, fermentables: [{ fermentable: "Pale Malt, 2-Row", amount: "12.0",  sgc: "1.037", lovibond: "2",  mash: "true", maltster: "Briess" } ,{ fermentable: "Wheat, German Malt", amount: "11.5",  sgc: "1.039", lovibond: "1",  mash: "true", maltster: "" } ,{ fermentable: "Munich", amount: "2.5",  sgc: "1.037", lovibond: "10",  mash: "true", maltster: "Weyermann" } ,{ fermentable: "Cara 45", amount: "1.0",  sgc: "1.031", lovibond: "45",  mash: "true", maltster: "Dingemans" } ], hops: [{ hop: "Sorachi Ace", aau: "10.9", amount: "15.0", form: "Pellet", boil_time: "90", grown: "", when: "Boil" } ,{ hop: "Sorachi Ace", aau: "10.9", amount: "15.0", form: "Pellet", boil_time: "60", grown: "", when: "Boil" } ,{ hop: "Sorachi Ace", aau: "10.9", amount: "15.0", form: "Pellet", boil_time: "30", grown: "", when: "Boil" } ,{ hop: "Sorachi Ace", aau: "10.9", amount: "15.0", form: "Pellet", boil_time: "15", grown: "", when: "Boil" } ,{ hop: "Sorachi Ace", aau: "10.9", amount: "60.0", form: "Pellet", boil_time: "0", grown: "", when: "Boil" } ], events: [{ event_at: "2010-03-20 00:00:00 UTC", type: "Brewed", gravity: "1.05", temperature: "0.0", note: "rack 1 carboy of pils into the other 2, use lager yeast to ferment about 3 gallons on top of 2 gallons pils." } ,{ event_at: "2010-04-03 00:00:00 UTC", type: "Packaged", gravity: "1.013", temperature: "0.0" } ], miscs: [], yeasts: [{ yeast: "German Ale", laboratory: "Wyeast", lab_id: "1007", pitched_at: "2010-03-20 00:00:00 UTC" } ] })
 add({ boil_volume: "10.0", efficency: "75", gravity: "1.09", ibu: "17.3", name: "Unnamed", privacy: "0", recipe_type: "All Grain", srm: "27.1", style: "Doppelbock", user_id: "2", volume: "10.0", units: { gravity_units: "SG", hop_units: "Grams", grain_units: "Lbs", temp_units: "F", volume_units: "Gallons" }, fermentables: [{ fermentable: "Munich Malt", amount: "27.0",  sgc: "1.034", lovibond: "6",  mash: "true", maltster: "Dingemans" } ,{ fermentable: "Cara 20", amount: "2.0",  sgc: "1.03", lovibond: "20",  mash: "true", maltster: "Dingemans" } ,{ fermentable: "Cara 8", amount: "1.75",  sgc: "1.027", lovibond: "8",  mash: "true", maltster: "Dingemans" } ,{ fermentable: "Wheat Malt", amount: "1.25",  sgc: "1.035", lovibond: "2",  mash: "true", maltster: "Dingemans" } ], hops: [{ hop: "Hallertauer", aau: "3.7", amount: "75.0", form: "Pellet", boil_time: "60", grown: "", when: "Boil" } ,{ hop: "Tettnanger", aau: "4.4", amount: "50.0", form: "Pellet", boil_time: "10", grown: "", when: "Boil" } ], events: [{ event_at: "2001-03-26 00:00:00 UTC", type: "Brewed", gravity: "1.09", temperature: "0.0" } ,{ event_at: "2001-04-09 00:00:00 UTC", type: "Packaged", gravity: "1.022", temperature: "0.0" } ], miscs: [], yeasts: [] })
