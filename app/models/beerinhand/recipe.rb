@@ -49,30 +49,9 @@ module Beerinhand
     validates_associated :miscs
     validates_associated :events
 
-    def fermentables_weight
-      fermentables.sum(&:amount)
-    end
-
-    def mash_weight
-      fermentables.select(&:mash).sum(&:amount)
-    end
-
-    def hops_weight
-      hops.sum(&:amount)
-    end
-
-    def brewed_at
-      event = events.detect { |e| e.type=='Brewed' }
-      event.present? ? event.event_at : nil
-    end
-
     private
 
     def perform_calculations
-      total = fermentables_weight
-      fermentables.each do |f|
-        f.percent = (f.amount / total * 100).round(1)
-      end
     end
 
   end

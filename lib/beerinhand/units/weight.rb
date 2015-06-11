@@ -1,7 +1,7 @@
 module Beerinhand
   module Units
     class Weight
-      include Concerns::Unit
+      include Beerinhand::Units::Concerns::Unit
 
       CONVERT = {
         kg: 1000,

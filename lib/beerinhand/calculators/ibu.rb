@@ -25,7 +25,6 @@ module Beerinhand
         tinseth.ibus = ibu
       end
 
-
       def method_missing(method_name, *args, &block)
         field = self.class.field_from_method(method_name)
         raise NoMethodError unless set_list.include?(field)
