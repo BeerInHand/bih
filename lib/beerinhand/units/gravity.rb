@@ -1,7 +1,7 @@
 module Beerinhand
   module Units
     class Gravity
-      include Concerns::Unit
+      include Beerinhand::Units::Concerns::Unit
 
       def self.valid_units
         [ :sg, :plato ]

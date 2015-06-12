@@ -1,3 +1,0 @@
-class BrewingFunctions
-
-end

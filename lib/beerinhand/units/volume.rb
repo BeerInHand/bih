@@ -1,7 +1,7 @@
 module Beerinhand
   module Units
     class Volume
-      include Concerns::Unit
+      include Beerinhand::Units::Concerns::Unit
 
       CONVERT = {
         barrels: 117.347772,

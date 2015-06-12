@@ -21,7 +21,6 @@ module Beerinhand
         self.class.send(:define_method, method) do |*args, &blok|
           model.send(method, *args, &blok)
         end
-
         send(method, *args, &block)
       else
         super

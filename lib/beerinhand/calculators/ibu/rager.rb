@@ -2,7 +2,7 @@ module Beerinhand
   module Calculators
     class Ibu
       class Rager
-        include Concerns::IbuCalculation
+        include Ibu::Concerns::IbuCalculation
 
         def utilization
           (18.11 + 13.86 * Math.tanh((boil_length - 31.32) / 18.27)) / 100
