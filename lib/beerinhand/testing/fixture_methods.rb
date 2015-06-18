@@ -29,10 +29,10 @@ module Beerinhand::FixtureMethods
       volume: create_volume,
       gravity: create_gravity,
       weight: create_weight,
-      hop_form: :pellet,
+      form: :pellet,
       aau: 10.0,
-      added_during: :boil,
-      boil_length: 90,
+      phase: :boil,
+      boiled: 90,
       boil_volume: create_volume
     }.merge(overrides)
 

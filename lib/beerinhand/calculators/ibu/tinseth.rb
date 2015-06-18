@@ -5,13 +5,13 @@ module Beerinhand
         include Concerns::IbuCalculation
 
         def utilization
-          (1.65 * 0.000125 ** (gravity.sg - 1.0)) * (1.0 - Math.exp(-0.04 * boil_length)) / 4.15
+          (1.65 * 0.000125 ** (gravity.sg - 1.0)) * (1.0 - Math.exp(-0.04 * boiled)) / 4.15
         end
 
-        def hop_form_modifier
+        def form_modifier
           # tinseth formulas based on leaf hops
-          return 1.08 if hop_form == :pellet
-          return 1.06 if hop_form == :plug
+          return 1.08 if form == :pellet
+          return 1.06 if form == :plug
           1.0
         end
       end

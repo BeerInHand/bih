@@ -4,6 +4,8 @@ module Beerinhand
 
       attr_accessor :original_gravity, :final_gravity
 
+      ByFormula = Struct.new(:abv, :abw)
+
       def initialize(original_gravity, final_gravity)
         @original_gravity = original_gravity
         @final_gravity = final_gravity
@@ -15,6 +17,10 @@ module Beerinhand
 
       def abw
         calculate_abw.round(1)
+      end
+
+      def alcohol
+        ByFormula.new(abv, abw)
       end
 
       def calories

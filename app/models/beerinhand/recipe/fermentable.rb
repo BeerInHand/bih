@@ -5,7 +5,7 @@ module Beerinhand
     field :fermentable,  type: String
     field :amount,       type: Float
     field :sgc,          type: Float, default: 1.000
-    field :lovibond,     type: Integer
+    field :lovibond,     type: Float
     field :mash,         type: Boolean, default: false
     field :maltster,     type: String
     field :percent,      type: Float
@@ -15,7 +15,7 @@ module Beerinhand
     validates :fermentable, presence: true
     validates :amount, numericality: { greater_than: 0 }
     validates :sgc, numericality: { greater_than_or_equal_to: 1.0 }
-    validates :lovibond, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :lovibond, numericality: { greater_than_or_equal_to: 0 }
 
   end
 end

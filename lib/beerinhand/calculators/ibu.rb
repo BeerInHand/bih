@@ -3,9 +3,9 @@ module Beerinhand
     class Ibu
       # http://rhbc.co/wiki/calculating-ibus
 
-      ByFormula = Struct.new(:rager, :tinseth)
-
       attr_accessor :rager, :tinseth
+
+      ByFormula = Struct.new(:rager, :tinseth)
 
       def initialize(params = {})
         @rager = Rager.new(params)
@@ -20,9 +20,17 @@ module Beerinhand
         ByFormula.new(rager.weight, tinseth.weight)
       end
 
-      def ibus=(ibu)
-        rager.ibus = ibu
-        tinseth.ibus = ibu
+      def weight_for_ibus(value)
+        ByFormula.new(
+          rager.send("ibus=", value),
+          tinseth.send("ibus=", value)
+        )
+      end
+
+      def hop=(hop)
+        [:weight, :form, :aau, :phase, :boiled].each do |field|
+          set "#{field}=", hop.send(field)
+        end
       end
 
       def method_missing(method_name, *args, &block)
@@ -34,7 +42,7 @@ module Beerinhand
       private
 
       def set_list
-        [:volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume]
+        [:volume, :gravity, :weight, :form, :aau, :phase, :boiled, :boil_volume]
       end
 
       def self.field_from_method(method_name)
@@ -45,7 +53,6 @@ module Beerinhand
         rager.send(field, value)
         tinseth.send(field, value)
       end
-
     end
   end
 end

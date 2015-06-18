@@ -5,13 +5,13 @@ module Beerinhand
         include Ibu::Concerns::IbuCalculation
 
         def utilization
-          (18.11 + 13.86 * Math.tanh((boil_length - 31.32) / 18.27)) / 100
+          (18.11 + 13.86 * Math.tanh((boiled - 31.32) / 18.27)) / 100
         end
 
-        def hop_form_modifier
+        def form_modifier
           # rager formulas based on pellet hops
-          return 0.92 if hop_form == :plug
-          return 0.90 if hop_form == :leaf
+          return 0.92 if form == :plug
+          return 0.90 if form == :leaf
           1.0
         end
 

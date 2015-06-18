@@ -28,6 +28,7 @@ module Beerinhand
 
     index({ user_id: 1 })
 
+    belongs_to :user, class_name: 'Beerinhand::User'
     embeds_many :fermentables, class_name: 'Beerinhand::Recipe::Fermentable'
     embeds_many :hops, class_name: 'Beerinhand::Recipe::Hop'
     embeds_many :yeasts, class_name: 'Beerinhand::Recipe::Yeast'
@@ -48,6 +49,10 @@ module Beerinhand
     validates_associated :yeasts
     validates_associated :miscs
     validates_associated :events
+
+    def self.find_or_create_by_id(id)
+      where(_id: id).first || create(_id: id)
+    end
 
     private
 

@@ -30,8 +30,8 @@ module Beerinhand::Constants
     @valid_hop_forms ||=  %w(Pellet Leaf Plug)
   end
 
-  def valid_hop_whens
-    @valid_hop_whens ||= %w(Boil FWH Dry Mash Whirlpool)
+  def valid_hop_phases
+    @valid_hop_phases ||= %w(Boil FWH Dry Mash Whirlpool)
   end
 
   def valid_misc_phases
@@ -78,12 +78,12 @@ module Beerinhand::Constants
     valid_recipe_types.first
   end
 
-  def default_hop_form
+  def default_form
     valid_hop_forms.first
   end
 
   def default_hop_when
-    valid_hop_whens.first
+    valid_hop_phases.first
   end
 
   def default_misc_phase

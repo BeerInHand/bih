@@ -6,22 +6,23 @@ module Beerinhand
         include Beerinhand::Constants
 
         included do
-          attr_accessor :volume, :gravity, :weight, :hop_form, :aau, :added_during, :boil_length, :boil_volume
+          attr_accessor :volume, :gravity, :weight, :form, :aau, :phase, :boiled, :boil_volume
         end
 
         def initialize(params = {})
           @volume = params[:volume] || Units::Volume.new(5, :gallons)
           @gravity = params[:gravity] || Units::Gravity.new(1.048, :sg)
           @weight = params[:weight] || Units::Weight.new(1, :ounces)
-          @hop_form = params[:hop_form] || :pellet
+          @form = params[:form] || :pellet
           @aau = params[:aau] || 10.0
-          @added_during = params[:added_during] || :boil
-          @boil_length = params[:boil_length] || 90
+          @phase = params[:phase] || :boil
+          @boiled = params[:boiled] || 90
           @boil_volume = params[:boil_volume] || Units::Volume.new(5, :gallons)
         end
 
         def ibus=(ibus)
-          weight.grams = volume.liters * ibu_correction_for_gravity * ibus / aau_utilization
+          grams = volume.liters * ibu_correction_for_gravity * ibus / aau_utilization
+          Units::Weight.new(grams, :grams)
         end
 
         def ibus
@@ -30,16 +31,16 @@ module Beerinhand
         end
 
         def utilization_with_modifiers
-          utilization * hop_form_modifier * added_during_modifier
+          utilization * form_modifier * phase_modifier
         end
 
-        def hop_form_modifier
+        def form_modifier
           1.0
         end
 
-        def added_during_modifier
-          return 0.8 if added_during == :mash
-          return 1.1 if added_during == :fwh
+        def phase_modifier
+          return 0.8 if phase == :mash
+          return 1.1 if phase == :fwh
           1.0
         end
 
